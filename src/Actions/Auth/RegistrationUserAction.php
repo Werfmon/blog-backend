@@ -26,8 +26,8 @@ class RegistrationUserAction extends Action
         if(!strcmp($password, $passwordAgain))
         {
             try{
-                $this->connection->query('INSERT INTO user (uuid, name, surname, email, role, sex, password) VALUES (?, ?, ?, ?, ?, ?, ?)',
-                                          (string)\Ramsey\Uuid\Uuid::uuid4(), $body['name'], $body['surname'], $body['email'], (int)$body['role'],  $body['sex'], sha1($password));
+                $this->connection->query('INSERT INTO user (uuid, name, surname, email, role_id, sex, password) VALUES (?, ?, ?, ?, ?, ?, ?)',
+                                          (string)\Ramsey\Uuid\Uuid::uuid4(), $body['name'], $body['surname'], $body['email'], (int)$body['role'],  $body['sex'], hash('sha256', $password));
             } catch(\Exception $e)
             {
                 return $this->respond(new ActionPayload(500));
