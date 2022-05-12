@@ -1,5 +1,9 @@
 <?php
 declare(strict_types=1);
+
+use App\Actions\Article\CreateArticleAction;
+use App\Actions\Article\GetArticleByUuidAction;
+use App\Actions\Article\GetTopArticleAction;
 use App\Actions\Auth\LoginUserAction;
 use App\Actions\Auth\RegistrationUserAction;
 use App\Actions\Category\GetAllCategoryAction;
@@ -29,13 +33,12 @@ return function (App $app) {
         $app->get('/category/all', GetAllCategoryAction::class);
         $app->get('/role/all', GetAllRolesAction::class);
         $app->get('/user/{userUUID}', GetUserByUuid::class);
+        $app->post('/article', CreateArticleAction::class);
     })->add(AuthMiddleware::class);
 
-    // $app->add(function ($request, $handler) {
-    //     $response = $handler->handle($request);
-    //     return $response
-    //             ->withHeader('Access-Control-Allow-Origin', 'http://localhost:8080/')
-    //             ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
-    //             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-    // });
+    $app->group('/api', function(Group $api) {
+        $api->get('/article', GetArticleByUuidAction::class);
+        $api->get('/article-top', GetTopArticleAction::class);
+    });
+
 };

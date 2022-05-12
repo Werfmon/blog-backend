@@ -32,11 +32,7 @@ class AuthMiddleware implements MiddlewareInterface
         $token_uuid = isset($request->getHeader('Authorization')[0]) ? $request->getHeader('Authorization')[0] : null;
         $response = new Response();
    
-        if ($token_uuid !== null && strlen($token_uuid) === Token::TOKEN_LENGTH) {
-            /**
-             * vezme token poslany v pozadavku, rozdeli jej na userUuid a token,
-             * pomoci token vyhleda v session jestli uzivatel existuje a z tokenu si vezme userUui
-             */  
+        if($token_uuid !== null && strlen($token_uuid) === Token::TOKEN_LENGTH) {
 
             $token = substr($token_uuid, 0, 36);
             $uuid = substr($token_uuid, 36, 36);
