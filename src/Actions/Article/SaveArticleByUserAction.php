@@ -18,6 +18,11 @@ class SaveArticleByUserAction extends Action
             return $this->respond(new ActionPayload(400));
         }
 
+        $userSaved = $this->connection->query('SELECT 1 FROM saved_article WHERE user_uuid=? AND article_uuid=?', $userUuid, $articleUuid);
+        if($userSaved) {
+            return $this->respond(new ActionPayload(400));
+        }
+
         $this->connection->query('INSERT INTO saved_article VALUES (?, ?)', $userUuid, $articleUuid);
 
         return $this->respond(new ActionPayload(200));
