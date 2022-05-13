@@ -6,6 +6,7 @@ use App\Actions\Article\GetArticleByUuidAction;
 use App\Actions\Article\GetTopArticleAction;
 use App\Actions\Article\LikeArticleByUserAction;
 use App\Actions\Article\SaveArticleByUserAction;
+use App\Actions\Article\SearchArticleByArgsAction;
 use App\Actions\Auth\LoginUserAction;
 use App\Actions\Auth\RegistrationUserAction;
 use App\Actions\Category\GetAllCategoryAction;
@@ -43,6 +44,7 @@ return function (App $app) {
         $api->get('/role/all', GetAllRolesAction::class);
         $api->get('/article', GetArticleByUuidAction::class);
         $api->get('/article-top', GetTopArticleAction::class);
+        $api->get('/article/search', SearchArticleByArgsAction::class);
     });
 
 };
