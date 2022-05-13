@@ -31,12 +31,12 @@ return function (App $app) {
     });
     $app->group('/app', function(Group $app) {
         $app->get('/category/all', GetAllCategoryAction::class);
-        $app->get('/role/all', GetAllRolesAction::class);
         $app->get('/user/{userUUID}', GetUserByUuid::class);
         $app->post('/article', CreateArticleAction::class);
     })->add(AuthMiddleware::class);
-
+    
     $app->group('/api', function(Group $api) {
+        $api->get('/role/all', GetAllRolesAction::class);
         $api->get('/article', GetArticleByUuidAction::class);
         $api->get('/article-top', GetTopArticleAction::class);
     });

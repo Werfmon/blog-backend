@@ -16,7 +16,7 @@ class GetTopArticleAction extends Action
             $this->respond(new ActionPayload(400));
         }
         $topArticles = $this->connection->query(
-            'SELECT a.title AS article_title, a.description AS article_description, 
+            'SELECT a.title AS article_title, a.description AS article_description, a.uuid AS article_uuid,
                     u.name AS user_name, u.surname AS user_surname, r.name AS role_name
              FROM article a 
              INNER JOIN user u ON a.user_uuid = u.uuid 
