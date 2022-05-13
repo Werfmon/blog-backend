@@ -23,6 +23,15 @@ class GetArticleByUuidAction extends Action
              INNER JOIN role r ON r.id = u.role_id
              WHERE a.uuid=?', $articleUuid
         )->fetch();
+        $articleLikes = $this->connection->query(
+            'SELECT count(*) 
+             FROM liked_article 
+             WHERE article_uuid=? 
+             GROUP BY article_uuid', $articleUuid
+        )->fetch();
+
+        $article['likes'] = $articleLikes;
+        
         return $this->respondWithData($article);
     }
 }

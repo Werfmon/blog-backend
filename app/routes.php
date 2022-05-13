@@ -4,6 +4,8 @@ declare(strict_types=1);
 use App\Actions\Article\CreateArticleAction;
 use App\Actions\Article\GetArticleByUuidAction;
 use App\Actions\Article\GetTopArticleAction;
+use App\Actions\Article\LikeArticleByUserAction;
+use App\Actions\Article\SaveArticleByUserAction;
 use App\Actions\Auth\LoginUserAction;
 use App\Actions\Auth\RegistrationUserAction;
 use App\Actions\Category\GetAllCategoryAction;
@@ -33,6 +35,8 @@ return function (App $app) {
         $app->get('/category/all', GetAllCategoryAction::class);
         $app->get('/user/{userUUID}', GetUserByUuid::class);
         $app->post('/article', CreateArticleAction::class);
+        $app->post('/article/like', LikeArticleByUserAction::class);
+        $app->post('/article/save', SaveArticleByUserAction::class);
     })->add(AuthMiddleware::class);
     
     $app->group('/api', function(Group $api) {
