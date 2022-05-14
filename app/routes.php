@@ -15,6 +15,7 @@ use App\Actions\Auth\LoginUserAction;
 use App\Actions\Auth\RegistrationUserAction;
 use App\Actions\Category\GetAllCategoryAction;
 use App\Actions\Role\GetAllRolesAction;
+use App\Actions\User\GetAllUserInformationAction;
 use App\Actions\User\GetUserByUuid;
 use App\Middleware\AuthMiddleware;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -46,7 +47,7 @@ return function (App $app) {
         $app->delete('/user/article/un-save', UnSaveArticleAction::class);
         $app->get('/user/article/liked', GetAllUserLikedArticlesAction::class);
         $app->delete('/user/article/un-like', UnLikeArticleAction::class);
-
+        $app->get('/user/info/{userUUID}', GetAllUserInformationAction::class);
     })->add(AuthMiddleware::class);
     
     $app->group('/api', function(Group $api) {
