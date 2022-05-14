@@ -33,10 +33,10 @@ return function (ContainerBuilder $containerBuilder) {
             $env->loadEnv(__DIR__ . '/../.env');
             return new Connection([
                 'driver'   => 'mysqli',
-                'host'     => $_ENV['MYSQL_HOST'],
-                'username' => $_ENV['MYSQL_USER'],
-                'password' => $_ENV['MYSQL_PASSWORD'],
-                'database' => $_ENV['MYSQL_DATABASE'],
+                'host'     => $_ENV['DB_HOST'],
+                'username' => $_ENV['DB_USER'],
+                'password' => $_ENV['DB_PASSWORD'],
+                'database' => $_ENV['DB_NAME'],
             ]);
         }
     ]);

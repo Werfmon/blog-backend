@@ -2,11 +2,15 @@
 declare(strict_types=1);
 
 use App\Actions\Article\CreateArticleAction;
+use App\Actions\Article\GetAllUserLikedArticlesAction;
+use App\Actions\Article\GetAllUserSavedArticlesAction;
 use App\Actions\Article\GetArticleByUuidAction;
 use App\Actions\Article\GetTopArticleAction;
 use App\Actions\Article\LikeArticleByUserAction;
 use App\Actions\Article\SaveArticleByUserAction;
 use App\Actions\Article\SearchArticleByArgsAction;
+use App\Actions\Article\UnLikeArticleAction;
+use App\Actions\Article\UnSaveArticleAction;
 use App\Actions\Auth\LoginUserAction;
 use App\Actions\Auth\RegistrationUserAction;
 use App\Actions\Category\GetAllCategoryAction;
@@ -38,6 +42,11 @@ return function (App $app) {
         $app->post('/article', CreateArticleAction::class);
         $app->post('/article/like', LikeArticleByUserAction::class);
         $app->post('/article/save', SaveArticleByUserAction::class);
+        $app->get('/user/article/saved', GetAllUserSavedArticlesAction::class);
+        $app->delete('/user/article/un-save', UnSaveArticleAction::class);
+        $app->get('/user/article/liked', GetAllUserLikedArticlesAction::class);
+        $app->delete('/user/article/un-like', UnLikeArticleAction::class);
+
     })->add(AuthMiddleware::class);
     
     $app->group('/api', function(Group $api) {

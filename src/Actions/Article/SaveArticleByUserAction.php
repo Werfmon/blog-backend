@@ -18,7 +18,7 @@ class SaveArticleByUserAction extends Action
             return $this->respond(new ActionPayload(400));
         }
 
-        $userSaved = $this->connection->query('SELECT 1 FROM saved_article WHERE user_uuid=? AND article_uuid=?', $userUuid, $articleUuid);
+        $userSaved = $this->connection->query('SELECT 1 FROM saved_article WHERE user_uuid=? AND article_uuid=?', $userUuid, $articleUuid)->fetchSingle();
         if($userSaved) {
             return $this->respond(new ActionPayload(400));
         }

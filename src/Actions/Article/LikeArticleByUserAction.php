@@ -18,7 +18,7 @@ class LikeArticleByUserAction extends Action
             return $this->respond(new ActionPayload(400));
         }
 
-        $userLiked = $this->connection->query('SELECT 1 FROM liked_articles WHERE user_uuid=? AND article_uuid=?', $userUuid, $articleUuid);
+        $userLiked = $this->connection->query('SELECT 1 FROM liked_article WHERE user_uuid=? AND article_uuid=?', $userUuid, $articleUuid)->fetchSingle();
         if($userLiked) {
             return $this->respond(new ActionPayload(400));
         }
