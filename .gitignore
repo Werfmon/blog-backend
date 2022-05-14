@@ -5,4 +5,7 @@
 /logs/*
 !/logs/README.md
 .phpunit.result.cache
+
+# enviroment
 .env
+.env.local
