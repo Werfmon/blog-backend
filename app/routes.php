@@ -18,6 +18,7 @@ use App\Actions\Role\GetAllRolesAction;
 use App\Actions\User\GetAllUserInformationAction;
 use App\Actions\User\GetUserByUuid;
 use App\Actions\User\UpdateUserAction;
+use App\Actions\User\UpdateUserPasswordAction;
 use App\Middleware\AuthMiddleware;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -50,9 +51,11 @@ return function (App $app) {
         $app->delete('/user/article/un-like', UnLikeArticleAction::class);
         $app->get('/user/info/{userUUID}', GetAllUserInformationAction::class);
         $app->put('/user/{userUUID}', UpdateUserAction::class);
+        //TODO: resit pres php mail a ne pres smtpjs, zmenit routu
     })->add(AuthMiddleware::class);
     
     $app->group('/api', function(Group $api) {
+        $api->get('/user/{userUUID}/password', UpdateUserPasswordAction::class);
         $api->get('/role/all', GetAllRolesAction::class);
         $api->get('/article', GetArticleByUuidAction::class);
         $api->get('/article-top', GetTopArticleAction::class);
