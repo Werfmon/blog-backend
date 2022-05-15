@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use App\Actions\Article\CreateArticleAction;
+use App\Actions\Article\DeleteArticleByUuidAction;
 use App\Actions\Article\GetAllUserLikedArticlesAction;
 use App\Actions\Article\GetAllUserSavedArticlesAction;
 use App\Actions\Article\GetArticleByUserAction;
@@ -57,6 +58,7 @@ return function (App $app) {
         $app->get('/user/{userUUID}/email', GetUserEmailAction::class);
         $app->delete('/user/{userUUID}', DeleteUserAccountAction::class);
         $app->get('/user/{userUUID}/articles', GetArticleByUserAction::class);
+        $app->delete('/article/{articleUUID}', DeleteArticleByUuidAction::class);
     })->add(AuthMiddleware::class);
     
     $app->group('/api', function(Group $api) {
