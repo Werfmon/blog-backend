@@ -15,8 +15,10 @@ use App\Actions\Auth\LoginUserAction;
 use App\Actions\Auth\RegistrationUserAction;
 use App\Actions\Category\GetAllCategoryAction;
 use App\Actions\Role\GetAllRolesAction;
+use App\Actions\User\DeleteUserAccountAction;
 use App\Actions\User\GetAllUserInformationAction;
 use App\Actions\User\GetUserByUuid;
+use App\Actions\User\GetUserEmailAction;
 use App\Actions\User\UpdateUserAction;
 use App\Actions\User\UpdateUserPasswordAction;
 use App\Middleware\AuthMiddleware;
@@ -51,11 +53,12 @@ return function (App $app) {
         $app->delete('/user/article/un-like', UnLikeArticleAction::class);
         $app->get('/user/info/{userUUID}', GetAllUserInformationAction::class);
         $app->put('/user/{userUUID}', UpdateUserAction::class);
-        //TODO: resit pres php mail a ne pres smtpjs, zmenit routu
+        $app->get('/user/{userUUID}/email', GetUserEmailAction::class);
+        $app->delete('/user/{userUUID}', DeleteUserAccountAction::class);
     })->add(AuthMiddleware::class);
     
     $app->group('/api', function(Group $api) {
-        $api->get('/user/{userUUID}/password', UpdateUserPasswordAction::class);
+        $api->get('/user/password', UpdateUserPasswordAction::class); 
         $api->get('/role/all', GetAllRolesAction::class);
         $api->get('/article', GetArticleByUuidAction::class);
         $api->get('/article-top', GetTopArticleAction::class);

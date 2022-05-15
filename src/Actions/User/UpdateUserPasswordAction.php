@@ -14,7 +14,6 @@ class UpdateUserPasswordAction extends Action
 
     public function action(): Response
     {
-        $uuid = $this->request->getAttribute('userUUID');
         $params = $this->request->getQueryParams();
 
         if (!(isset($params['password']) || isset($params['current']) || isset($params['token']))) {
