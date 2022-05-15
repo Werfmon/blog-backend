@@ -7,12 +7,14 @@ use App\Actions\Article\GetAllUserLikedArticlesAction;
 use App\Actions\Article\GetAllUserSavedArticlesAction;
 use App\Actions\Article\GetArticleByUserAction;
 use App\Actions\Article\GetArticleByUuidAction;
+use App\Actions\Article\GetArticleForUpdateAction;
 use App\Actions\Article\GetTopArticleAction;
 use App\Actions\Article\LikeArticleByUserAction;
 use App\Actions\Article\SaveArticleByUserAction;
 use App\Actions\Article\SearchArticleByArgsAction;
 use App\Actions\Article\UnLikeArticleAction;
 use App\Actions\Article\UnSaveArticleAction;
+use App\Actions\Article\UpdateArticleAction;
 use App\Actions\Auth\LoginUserAction;
 use App\Actions\Auth\RegistrationUserAction;
 use App\Actions\Category\GetAllCategoryAction;
@@ -59,6 +61,8 @@ return function (App $app) {
         $app->delete('/user/{userUUID}', DeleteUserAccountAction::class);
         $app->get('/user/{userUUID}/articles', GetArticleByUserAction::class);
         $app->delete('/article/{articleUUID}', DeleteArticleByUuidAction::class);
+        $app->get('/article/{articleUUID}', GetArticleForUpdateAction::class);
+        $app->put('/article/{articleUUID}', UpdateArticleAction::class);
     })->add(AuthMiddleware::class);
     
     $app->group('/api', function(Group $api) {
