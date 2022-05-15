@@ -15,7 +15,7 @@ class LoginUserAction extends Action
         $body = $this->request->getParsedBody();
 
         if (!isset($body['email'])) {
-            return $this->respond(new ActionPayload(401));
+            return $this->respond(new ActionPayload(400));
         }
 
         $auth = $this->connection->query('SELECT 1 FROM user WHERE email=? AND password=?', $body['email'], hash('sha256', $body['password']))->fetchSingle();
