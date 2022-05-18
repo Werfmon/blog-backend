@@ -37,6 +37,7 @@ return function (ContainerBuilder $containerBuilder) {
                 'username' => $_ENV['DB_USER'],
                 'password' => $_ENV['DB_PASSWORD'],
                 'database' => $_ENV['DB_NAME'],
+                'port' => (int)$_ENV['DB_PORT'],
             ]);
         }
     ]);
