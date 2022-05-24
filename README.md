@@ -1,7 +1,7 @@
 ## Clone the Application
 
 ```
-git clone [https://github.com/Werfmon/blog-backend.git](https://github.com/Werfmon/blog-backend.git)
+git clone https://github.com/Werfmon/blog-backend.git
 ```
 
 
