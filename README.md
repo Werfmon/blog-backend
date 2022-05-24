@@ -29,11 +29,17 @@ directory of file: C:\xampp\apache\conf\extra\httpd-vhosts
 </VirtualHost>
 ```
 
-Also you need map this address in: C:\Windows\System32\drivers\etc\hosts (in windows you need to open a editor as admin)
+Also you need map this address in: C:\Windows\System32\drivers\etc\hosts (in windows you need to open a editor as admin) 
+
 Add same name as ServerName in httpd-vhosts
 ```
   ...
   127.0.0.1 blog.local
   ...
 ```
+
+---------------------------------------------
+
+Okey now as a last thing you need to setup database in .env file
+
 
